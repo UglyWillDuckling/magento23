@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--refresh table if separator changed-->
+    <type name="Magento\Config\Model\Config">
+        <plugin name="m-seofilter-separator-table-refresh" type="Mirasvit\SeoFilter\Plugin\TableRefreshAdminPlugin" sortOrder="1000"/>
+    </type>
+
+</config>

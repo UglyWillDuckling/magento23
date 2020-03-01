@@ -1,0 +1,80 @@
+"Select Filtered Attributes","Select Filtered Attributes"
+"Select Filters for Slider","Select Filters for Slider"
+Image,Image
+"Click here or drag and drop to add image","Click here or drag and drop to add image"
+"Delete image","Delete image"
+Hidden,Hidden
+Images,Images
+"Add New Row","Add New Row"
+"All Files","All Files"
+Title,Title
+"Layered Navigation","Layered Navigation"
+"Multiselect attributes Layered Navigation fields will be available after attribute creation","Multiselect attributes Layered Navigation fields will be available after attribute creation"
+"General Properties","General Properties"
+"Is slider","Is slider"
+Yes,Yes
+No,No
+"In one row","In one row"
+"In different row","In different row"
+Default,Default
+Horizontal,Horizontal
+"All filtered attributes","All filtered attributes"
+"Show/hide link","Show/hide link"
+"Scroll box","Scroll box"
+"Simple Checkbox","Simple Checkbox"
+Checkbox,Checkbox
+Circle,Circle
+Disabled,Disabled
+Slider,Slider
+Category,Category
+"%1 and above","%1 and above"
+"%1 - %2","%1 - %2"
+"%1 & Up","%1 & Up"
+"'Failed genareation CSS file: ' . . ' in ' . . '<br/>Message: ' .","'Failed genareation CSS file: ' . . ' in ' . . '<br/>Message: ' ."
+Option,Option
+"Change original menu text","Change original menu text"
+"Whole width image","Whole width image"
+item,item
+items,items
+"Now Shopping by","Now Shopping by"
+Previous,Previous
+Remove,Remove
+"Remove This Item","Remove This Item"
+"Clear All","Clear All"
+"We don't recognize or support this file extension type.","We don't recognize or support this file extension type."
+"Enabled Ajax","Enabled Ajax"
+"Enabled Multiselect","Enabled Multiselect"
+"Display options","Display options"
+"Checkbox or circle background color","Checkbox or circle background color"
+"Checkbox or circle border color","Checkbox or circle border color"
+"Checkbox or circle checked label color","Checkbox or circle checked label color"
+"Show opened filters","Show opened filters"
+"Add stock data to catalogsearch_fulltext reindex","Add stock data to catalogsearch_fulltext reindex"
+"Enabled highlight for links","Enabled highlight for links"
+"Highlight color","Highlight color"
+"Links limit","Links limit"
+"Way to display links limit","Way to display links limit"
+"Scroll height (px)","Scroll height (px)"
+"Less text","Less text"
+"More text","More text"
+"Switch label color","Switch label color"
+"Select filters to show in frontend","Select filters to show in frontend"
+"Slider handle color","Slider handle color"
+"Slider handle border color","Slider handle border color"
+"Slider connect color","Slider connect color"
+"Slider text color","Slider text color"
+"<strong><u>New Products:</u></strong>","<strong><u>New Products:</u></strong>"
+Enabled,Enabled
+Label,Label
+Position,Position
+"<strong><u>On Sale:</u></strong>","<strong><u>On Sale:</u></strong>"
+<strong><u>Stock:</u></strong>,<strong><u>Stock:</u></strong>
+"In Stock Filter Label","In Stock Filter Label"
+"Out of Stock Filter Label","Out of Stock Filter Label"
+<strong><u>Rating:</u></strong>,<strong><u>Rating:</u></strong>
+"Select filters to show in horizontal navigation","Select filters to show in horizontal navigation"
+"Hide horizontal filters if screen size less then (px)","Hide horizontal filters if screen size less then (px)"
+"Filter clear block position","Filter clear block position"
+"Representation of attributes in filter clear block","Representation of attributes in filter clear block"
+"Robots meta header for pages with applied filters","Robots meta header for pages with applied filters"
+"Canonical link for pages for pages with applied filters","Canonical link for pages for pages with applied filters"

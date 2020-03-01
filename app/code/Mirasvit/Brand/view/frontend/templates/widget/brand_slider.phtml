@@ -1,0 +1,136 @@
+<?php
+/* @var $block \Mirasvit\Brand\Block\Widget\BrandSlider */
+?>
+<?php
+    $itemsLimit = $block->getItemsLimit();
+    $sliderItems = $block->getSliderItems();
+    $isShowTitle = $block->isShowTitle();
+    $titleText = $block->getTitleText();
+    $titleTextColor = $block->getTitleTextColor();
+    $titleBackgroundColor = $block->getTitleBackgroundColor();
+    $isShowBrandLabel = $block->isShowBrandLabel();
+    $brandLabelColor = $block->getBrandLabelColor();
+    $isShowButton = $block->isShowButton();
+    $isShowPagination = $block->isShowPagination();
+    $isAutoPlay = $block->isAutoPlay();
+    $autoPlayInterval = $block->getAutoPlayInterval();
+    $isAutoPlayLoop = $block->isAutoPlayLoop();
+    $sliderWidth = $block->getSliderWidth();
+    $sliderImageWidth = $block->getSliderImageWidth();
+    $spacingBetweenImages = $block->getSpacingBetweenImages();
+    $pauseOnHover = $block->getPauseOnHover();
+    $inactivePagingColor = $block->getInactivePagingColor();
+    $activePagingColor = $block->getActivePagingColor();
+    $hoverPagingColor = $block->getHoverPagingColor();
+    $navigationButtonsColor = $block->getNavigationButtonsColor();
+?>
+<?php if ($brandLabelColor): ?>
+    <style>
+        .m-brand-slider-container .m-brand-slider-wrapper.flexslider .slides .m-brand-label a {
+            color: <?= /* @escapeNotVerified */ $brandLabelColor ?>;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($sliderWidth): ?>
+    <style>
+        .m-brand-slider-wrapper,
+        .m-brand-slider-title {
+           max-width: <?= /* @escapeNotVerified */ $sliderWidth ?>px;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($sliderImageWidth): ?>
+    <style>
+        .m-brand-slider-wrapper .slides img {
+            width: <?= /* @escapeNotVerified */ $sliderImageWidth ?>px;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($inactivePagingColor): ?>
+    <style>
+        .flex-control-paging li a {
+            background: <?= /* @escapeNotVerified */ $inactivePagingColor ?>;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($activePagingColor): ?>
+    <style>
+        .flex-control-paging li a.flex-active {
+            background: <?= /* @escapeNotVerified */ $activePagingColor ?>;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($hoverPagingColor): ?>
+    <style>
+        .flex-control-paging li a:hover {
+            background: <?= /* @escapeNotVerified */ $hoverPagingColor ?>;
+        }
+    </style>
+<?php endif; ?>
+<?php if ($navigationButtonsColor): ?>
+    <style>
+        .flex-direction-nav a:before {
+            color: <?= /* @escapeNotVerified */ $navigationButtonsColor ?>;
+        }
+    </style>
+<?php endif; ?>
+<div class="m-brand-slider-container">
+    <?php if ($isShowTitle && $titleText): ?>
+        <div class="m-brand-slider-title"
+             style="color: <?= /* @escapeNotVerified */ $block->escapeHtml($titleTextColor) ?>;
+                 background-color:<?= /* @escapeNotVerified */ $block->escapeHtml($titleBackgroundColor) ?>;">
+            <?= $block->escapeHtml($titleText) ?>
+        </div>
+    <?php endif; ?>
+    <?php if (count($sliderItems) > 0): ?>
+        <div class="m-brand-slider-wrapper flexslider">
+            <ul class="slides">
+            <?php foreach ($sliderItems as $item) : ?>
+                <li>
+                    <a href="<?= /* @escapeNotVerified */ $this->getBrandUrl($item['url_key'], $item['brand_title'])?>" class="slide">
+                        <div class="m-slider
+                            <?php if ($isShowBrandLabel): ?>
+                                <?= /* @escapeNotVerified */ 'm-slider-brand-label' ?>
+                            <?php endif; ?>">
+                            <?php if ($item['logo']) : ?>
+                                <img src="<?= /* @escapeNotVerified */ $block->getImageUrl($item['logo']); ?>" />
+                            <?php else : ?>
+                                <p class="m-no-img" ><?= /* @escapeNotVerified */  $item['brand_title'][0]?></p>
+                            <?php endif ?>
+                        </div>
+                    </a>
+                    <?php if ($isShowBrandLabel) : ?>
+                        <div class="m-brand-label">
+                            <a href="<?= /* @escapeNotVerified */ $this->getBrandUrl($item['url_key'], $item['brand_title'])?>" class="slide">
+                                <?= $block->escapeHtml($item['brand_title'])?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <script>
+            require([
+                "jquery",
+                "Mirasvit_Brand/js/jquery.flexslider-min",
+                "domReady!"
+            ], function ($) {
+                $('.m-brand-slider-wrapper').flexslider({
+                    animation: "slide",
+                    animationLoop: <?= /* @escapeNotVerified */ $isAutoPlayLoop ?>,
+                    itemWidth: 10,
+                    itemMargin: <?= /* @escapeNotVerified */ $spacingBetweenImages ?>,
+                    minItems: 1,
+                    maxItems: <?= /* @escapeNotVerified */ $itemsLimit ?>,
+                    controlNav: <?= /* @escapeNotVerified */ $isShowPagination ?>,
+                    directionNav: <?= /* @escapeNotVerified */ $isShowButton ?>,
+                    slideshow: <?= /* @escapeNotVerified */ $isAutoPlay ?>,
+                    slideshowSpeed: <?= /* @escapeNotVerified */ $autoPlayInterval ?>,
+                    pauseOnHover: <?= /* @escapeNotVerified */ $pauseOnHover ?>,
+                });
+            });
+        </script>
+    <?php endif; ?>
+</div>
+

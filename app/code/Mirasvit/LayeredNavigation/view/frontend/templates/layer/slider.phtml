@@ -1,0 +1,57 @@
+<?php
+/**
+ * Template for slider
+ *
+ * @var $block \Mirasvit\LayeredNavigation\Block\Renderer\Filter
+ */
+
+$id = 'm-navigation-slider-' . $block->getFilter()->getRequestVar() . '-' . $attributeCode;
+$style = 'display: none;';
+$isAjax = $this->isNavAjaxEnabled();
+$numberSymbolsAfterComma = 2;
+?>
+<?php if (isset($sliderData) && $sliderData): ?>
+    <ol class="items m-navigation-slider">
+        <li>
+            <form m-navigation-filter="<?php echo $attributeCode; ?>">
+                <div class="m-navigation-slider-<?php echo $attributeCode; ?>"
+                     class="m-navigation-slider-container"
+                     data-min="<?php echo $sliderData['min']; ?>"
+                     data-max="<?php echo $sliderData['max']; ?>"
+                >
+                    <input
+                            class="<?= $id ?>-range"
+                            name="<?= $block->getFilter()->getRequestVar(); ?>"
+                            type="checkbox"
+                            style="<?= $style ?>"
+                    />
+                    <p>
+                        <input type="text" class="amount-<?= $id ?>" readonly style="border:0; font-weight:bold;">
+                    </p>
+                    <div class="<?= $id ?>"></div>
+                </div>
+            </form>
+
+
+        </li>
+    </ol>
+    <script type="text/x-magento-init">
+{
+    ".m-navigation-slider-<?php echo $attributeCode; ?>": {
+        "Mirasvit_LayeredNavigation/js/navigation/slider": {
+                "slider_param_template": "<?= $block->getSliderParamTemplate(); ?>",
+                "min":<?php echo $sliderData['min']; ?>,
+                "max":<?php echo $sliderData['max']; ?>,
+                "url": "<?php echo $sliderData['url']; ?>",
+                "from": <?= (float)$sliderData['from']; ?>,
+                "to": <?= (float)$sliderData['to']; ?>,
+                "isAjax": <?= $isAjax; ?>,
+                "id": "<?= $id; ?>",
+                "currencySymbol": "<?= strpos($attributeCode, 'price') !== false ? $block->getCurrencySymbol() : ''; ?>",
+                "numberSymbolsAfterComma": "<?= strpos($attributeCode, 'price') !== false ? $numberSymbolsAfterComma : 0 ?>",
+                "isSeoFilterEnabled": "<?php echo $block->isSeoFilterEnabled(); ?>"
+            }
+    }
+}
+    </script>
+<?php endif; ?>

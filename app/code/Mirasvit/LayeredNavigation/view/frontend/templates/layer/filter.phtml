@@ -1,0 +1,169 @@
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Mirasvit\LayeredNavigation\Block\Renderer\Filter
+ */
+
+$imageSettings = $block->getImageSettings();
+$showMoreLinks = $block->getShowMoreLinksCount();
+$linksLimitDisplay = $block->getLinksLimitDisplay();
+$showMoreCounter = 0;
+$lessText = $this->getFilterLessText();
+$moreText = $this->getFilterMoreText();
+?>
+<ol class="items" <?= $block->getScrollStyle(count($filterItems)); ?>>
+    <form m-navigation-filter="<?php echo $attributeCode;?>">
+        <?php foreach ($filterItems as $filterItem): ?>
+            <?php $filterLabel = $block->getFilterLabel($imageSettings,
+                $filterItem->getValueString(),
+                $block->getFilter()->getRequestVar(),
+                $filterItem->getLabel());
+                $imageStile = $block->getImageStyle($filterLabel);
+                $showMoreCounter++;
+                $classMore = '';
+                if ($showMoreLinks && $showMoreCounter > $showMoreLinks && $block->isLinkShowHide()) {
+                    $classMore = 'm-navigation-show-more-' . $block->getFilter()->getRequestVar();
+                }
+            ?>
+            <?php $class =  "m-navigation-filter-item" //. $block->getFilterUniqueValue($filterItem); ?>
+            <li class="item <?= $classMore ?>">
+                <?php if ($filterItem->getCount() >= 0): ?>
+                    <?php $checked =  $this->isFilterChecked($filterItem) ? ' checked' : ''; ?>
+                    <?php
+                    $isFilterChecked = $this->isFilterChecked($filterItem, true);
+                    $highlightClass = ($isFilterChecked) ? ' m-navigation-highlight' : '';
+                    $linkHighlightClass = ($isFilterChecked && $this->isEnabledLinkHighlight())
+                        ? ' m-navigation-link-highlight' : '';
+                    $checked =  ($this->isFilterChecked($filterItem) || $highlightClass) ? ' checked' : '';
+                    $hrefUrl = ($highlightClass) ? $filterItem->getRemoveUrl() : $filterItem->getUrl();
+                    $isStylizedCheckbox = $block->isStylizedCheckbox();
+                    $style = $block->getStyle();
+                    $checkboxClass = $block->getCheckboxClass();
+                    $id = 'm_' . $block->getFilter()->getRequestVar() . '[' . $filterItem->getValueString() . ']';
+                    ?>
+                    <a href="<?= $block->escapeUrl($hrefUrl) ?>"
+                       class="<?= $class . $highlightClass . $linkHighlightClass; ?>" >
+                        <?php
+                        if ($imageSettings
+                            && isset($imageSettings[$block->getFilter()->getRequestVar()][$filterItem->getValueString()]['url'])
+                            && ($imageUrl = $imageSettings[$block->getFilter()->getRequestVar()][$filterItem->getValueString()]['url'])):
+                            $highlightIamgeClass = ($isFilterChecked) ? ' m-navigation-highlight-swatch' : '';
+                            ?>
+                            <div class="swatch-option image <?= $highlightIamgeClass ?>" option-type="2"
+                                 option-id="<?= $filterItem->getValueString(); ?>"
+                                 option-label="<?= $block->getFilter()->getRequestVar(); ?>"
+                                 option-tooltip-thumb="<?= $imageUrl ?>"
+                                 option-tooltip-value=""
+                                 style="background: url(<?= $imageUrl ?>)
+                                     no-repeat center;
+                                     background-size: auto 100%;
+                                    <?= $imageStile; ?>"
+                            >
+                            </div>
+                            <?php $style = 'display: none;'; ?>
+                        <?php endif; ?>
+                        <?php if (isset($ratingFilterData) && $ratingFilterData 
+                            && isset($ratingFilterData[$filterItem->getValueString()]['value'])) : ?>
+                            <?php $currentRating = $ratingFilterData[$filterItem->getValueString()]['value']; ?>
+                            <?php $style = 'display: none;'; ?>
+                            <input
+                                id="<?= $id ?>"
+                                class="<?= $class .'mult' . ' styled'; ?>"
+                                name="<?= $block->getFilter()->getRequestVar(); ?>"
+                                value="<?= $currentRating;?>"
+                                type="checkbox"
+                                style="<?= $style ?>"
+                                <?php echo $checked ?>
+                            />
+                            <div class="rating-summary">
+                                <div class="rating-result" title="<?php echo ($currentRating*20);?>%">
+                                    <span style="width:<?php echo ($currentRating*20);?>%"><span><?php echo $currentRating; ?></span></span>
+                                </div>
+                                <span><?php echo ' & Up'; ?></span>
+                                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                    <span class="<?= 'count' . $highlightClass . $linkHighlightClass; ?>"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?> <?= /* @escapeNotVerified */ __('item') ?><?php else:?> <?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                                <?php endif; ?>
+                            </div>
+                        <?php elseif ($isStylizedCheckbox && !$style): ?>
+                            <div class="<?= $checkboxClass ?>">
+                                <input
+                                    id="<?= $id ?>"
+                                    class="<?= $class .'mult' . ' styled'; ?>"
+                                    name="<?= $block->getFilter()->getRequestVar(); ?>"
+                                    value="<?= $filterItem->getValueString();?>"
+                                    type="checkbox"
+                                    style="<?= $style ?>"
+                                    <?php echo $checked ?>
+                                />
+                                <label for="<?= $id ?>">
+                                    <?= /* @escapeNotVerified */ $filterLabel ?>
+                                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                        <span class="<?= 'count' . $highlightClass . $linkHighlightClass; ?>"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                                <?php if ($filterItem->getCount() == 1):?> <?= /* @escapeNotVerified */ __('item') ?><?php else:?> <?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                                    <?php endif; ?>
+                                </label>
+                            </div>
+                        <?php else: ?>
+                            <input
+                                id="<?= $id ?>"
+                                class="<?= $class .'mult' . ' styled'; ?>"
+                                name="<?= $block->getFilter()->getRequestVar(); ?>"
+                                value="<?= $filterItem->getValueString();?>"
+                                type="checkbox"
+                                style="<?= $style ?>"
+                                <?php echo $checked ?>
+                            />
+                            <?= /* @escapeNotVerified */ $filterLabel ?>
+                            <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                                <span class="<?= 'count' . $highlightClass . $linkHighlightClass; ?>"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?> <?= /* @escapeNotVerified */ __('item') ?><?php else:?> <?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </a>
+                <?php else:?>
+                    <?= /* @escapeNotVerified */ $filterLabel ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?= /* @escapeNotVerified */ $filterItem->getCount() ?><span class="filter-count-label">
+                    <?php if ($filterItem->getCount() == 1):?><?= /* @escapeNotVerified */ __('item') ?><?php else:?><?= /* @escapeNotVerified */ __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <script type="text/x-magento-init">
+                {
+                    ".<?php echo $class; ?>": {
+                        "Mirasvit_LayeredNavigation/js/navigation/filter": {
+                            "isAjaxEnabled": <?= $this->isNavAjaxEnabled(); ?>,
+                            "isMultiselectEnabled": <?= $this->isNavMultiselectEnabled(); ?>
+                        },
+                        "Mirasvit_LayeredNavigation/js/navigation/filter-link": {
+                            "isAjaxEnabled": "<?= $this->isNavAjaxEnabled(); ?>"
+                        }
+                    },
+                    ".<?php echo $class .'mult'; ?>": {
+                        "Mirasvit_LayeredNavigation/js/navigation/filter-checkbox": {
+                            "isAjaxEnabled": "<?= $this->isNavAjaxEnabled(); ?>",
+                            "isStylizedCheckbox": <?= (int)$isStylizedCheckbox; ?>
+                        }
+                    }
+                }
+                </script>
+            </li>
+        <?php endforeach ?>
+
+    </form>
+</ol>
+<?php if ($block->isLinkShowHide() && $showMoreLinks && $classMore): ?>
+    <span class="<?= 'more-links-' . $classMore; ?>"><?= $moreText; ?></span>
+    <script type="text/x-magento-init">
+    {
+        ".<?php echo 'more-links-' . $classMore; ?>": {
+            "Mirasvit_LayeredNavigation/js/navigation/more-links": {
+                "classMore": "<?= $classMore; ?>",
+                "lessText": "<?= $lessText; ?>",
+                "moreText": "<?= $moreText; ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

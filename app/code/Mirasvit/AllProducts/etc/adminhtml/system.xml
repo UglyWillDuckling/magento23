@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="all_products" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label"
+                 sortOrder="460">
+            <label>AllProducts</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_AllProducts::config_all_products</resource>
+
+            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1000">
+                <label>General</label>
+                <field id="isEnabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip><![CDATA[Enable All Products page]]></tooltip>
+                </field>
+                <field id="AllProductsUrl" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>All Products URL</label>
+                    <tooltip><![CDATA[Add url for all products page. Will use "all" if not configured]]></tooltip>
+                </field>
+                <field id="Title" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Title</label>
+                    <tooltip><![CDATA[Add Title for all products page]]></tooltip>
+                </field>
+                <field id="MetaTitle" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Meta Title</label>
+                    <tooltip><![CDATA[Add Meta Title for all products page]]></tooltip>
+                </field>
+                <field id="MetaKeyword" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Meta Keyword</label>
+                    <tooltip><![CDATA[Add Meta Keyword for all products page]]></tooltip>
+                </field>
+                <field id="MetaDescription" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Meta Description</label>
+                    <tooltip><![CDATA[Add Meta Description for all products page]]></tooltip>
+                </field>
+                <field id="isShowAllCategories" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+                    <label>Show all categories in filter</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip><![CDATA[If enabled show all categories in filter. If disabled show only top level categories.]]></tooltip>
+                </field>
+            </group>
+            <group id="seo" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1000">
+                <label>SEO</label>
+                <field id="robots" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Robots meta header for All Products page</label>
+                    <source_model>Mirasvit\SeoNavigation\Model\Config\Source\MetaRobots</source_model>
+                    <tooltip><![CDATA[This directive controls page visibility by search engines crawlers]]></tooltip>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

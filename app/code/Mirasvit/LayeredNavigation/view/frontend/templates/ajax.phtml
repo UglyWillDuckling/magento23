@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var $block \Mirasvit\LayeredNavigation\Block\Ajax
+ */
+?>
+<?php if ($block->isAjaxEnabled()): ?>
+    <script type="text/x-magento-init">
+    {
+        "body.page-with-filter, body.catalogsearch-result-index": {
+            "Mirasvit_LayeredNavigation/js/navigation": {
+                "cleanUrl": "<?php echo $block->getCleanUrl();?>",
+                "overlayUrl": "<?php echo $block->getOverlayUrl();?>",
+                "isSeoFilterEnabled": "<?php echo $block->isSeoFilterEnabled();?>",
+                "isFilterClearBlockInOneRow": "<?php echo $block->isFilterClearBlockInOneRow();?>",
+                "isHorizontalByDefault": "<?php echo $block->isUseCatalogLeftnavHorisontalNavigation();?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

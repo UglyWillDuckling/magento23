@@ -1,0 +1,137 @@
+<div class="fieldset">
+    <div class="grid">
+        <div class="hor-scroll">
+            <table cellspacing="0" class="data border admin__control-table" width="100%">
+                <thead>
+                <tr class="headings">
+                    <th><?php echo __('Option') ?></th>
+                    <th><?php echo __('Images') ?></th>
+                    <th><?php echo __('Change original menu text') ?></th>
+                    <th><?php echo __('Whole width image') ?></th>
+                </tr>
+                </thead>
+                <tbody id="link_items_body">
+                </tbody>
+            </table>
+            <div style="display: none">
+                <?php echo $block->getImageField(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mNavigationImageEdit'
+    ], function($) {
+        var linkTemplate = '' +
+            '<tr>' +
+            '<td>' +
+                '<input type="hidden" name="mst_image_options[{{id}}][option_id]" value="{{id}}" />' +
+                '{{label}}' +
+                '<input type="text" class="__option_text__ input-text" name="mst_image_options[{{id}}][option_text]" value="{{option_text}}" />' +
+            '</td>';
+
+        linkTemplate += '' +
+            '<td id="gallery_cell_{{id}}_navigation" class="m_navigation_images_place">' +
+                '<div class="files">' +
+                '<div class="row">' +
+                '<input type="hidden" class="__delete__" name="mst_image_options[{{id}}][display][navigation_is_delete]" value="" />' +
+                '<input type="hidden" id="attribute_{{id}}_navigation_file_save" name="mst_image_options[{{id}}][display][navigation_file]" value="{{file_save}}" />' +
+                '<div id="attribute_{{id}}_navigation_file">' +
+                '<div id="attribute_{{id}}_navigation_file-old" class="file-row-info"></div>' +
+                '<div id="attribute_{{id}}_navigation_file-new" class="file-row-info"></div>' +
+                '<div class="clear"></div>' +
+                '</div>' +
+                '</div>' +
+                '<div>' +
+                '<span id="attribute_{{id}}_navigation_sample_container"></span>' +
+                '</div>' +
+                '</div>' +
+            '</td>';
+
+        linkTemplate += '' +
+            '<td>' +
+                '<input type="text" class="input-text" name="mst_filter_text[{{id}}]" value="{{mst_filter_text}}"><br><br>' +
+            '</td>';
+
+        linkTemplate += '' +
+            '<td style="text-align: center;">';
+
+        linkTemplate += '' + '<input type="checkbox" class="input-radio" name="mst_is_whole_width_image[{{id}}]" value="{{id}}" {{mst_is_whole_width_image}}><br><br>';
+
+        linkTemplate += ''
+            + '</td>';
+
+        linkTemplate += '' +
+            '</tr>';
+
+        var linkItems = {
+            tbody: $('#link_items_body'),
+            templateSyntax: /(^|.|\r|\n)({{(\w+)}})/,
+            templateText: linkTemplate,
+            itemCount: 1,
+            uploader: {},
+
+            add: function (data) {
+                alertAlreadyDisplayed = false;
+                this.template = new Template(this.templateText, this.templateSyntax);
+
+                if (data.value == undefined) {
+                    data.value = this.itemCount;
+                }
+
+                data.id = data.value;
+
+                var row = this.template.evaluate(data);
+                $(this.tbody).append(row);
+
+                if (data.label) {
+                    $('.__option_text__', this.tbody).each(function (elm) {
+                        this.remove();
+                    });
+                }
+
+                if (!data.navigation_file_save) {
+                    data.navigation_file_save = {};
+                }
+                var id = data.id + '_navigation';
+
+                var newImg = $('#img_field-container').clone();
+                $(newImg).attr('id', 'img-uploader-' + id);
+
+                var currentTd = $('tr:last td[id="gallery_cell_' + id + '"]', this.tbody);
+                $(currentTd).prepend(newImg);
+                var fileUploader = $(newImg).mNavigationImageEdit({
+                    galleryContainer: currentTd,
+                    id: id
+                });
+
+                if (data.navigation_file_save.url) {
+                    currentTd.trigger('addItem', data.navigation_file_save);
+                }
+
+                this.uploader[id] = fileUploader;
+
+                this.itemCount++;
+            }
+        }
+
+        $('body').on('click', 'tbody#link_items_body .delete-link-item', function() {
+            var row = $(this).parents('tr');
+            $('input', row).not('input[name*="option_id"]').val('');
+            $('input[type="hidden"].__delete__', row).val(1);
+
+            $(row).addClass('no-display ignore-validate').hide();
+            $('.actions button.action-delete', row).click();
+        });
+
+        if ($('#add_link_item').length) {
+            $('body').on('click', '#add_link_item', linkItems.add.bind(linkItems));
+        }
+
+        <?php foreach ($block->getAttibuteOptions() as $item): ?>
+        linkItems.add(<?php echo json_encode($item) ?>);
+        <?php endforeach ?>
+    });
+</script>

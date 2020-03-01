@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Mirasvit_LayeredNavigation::css/source/horizontal/horizontal_hide.css"/>
+	</head>
+	<body>
+		<referenceContainer name="head.additional">
+			<block class="Mirasvit\LayeredNavigation\Block\AdditionalCss" name="m.additional.css" template="Mirasvit_LayeredNavigation::css_config.phtml" />
+		</referenceContainer>
+		<referenceContainer name="content">
+			<block class="Mirasvit\LayeredNavigation\Block\Ajax" name="category_ajax" template="ajax.phtml" />
+			<container name="m.horizontal.navigation.container" htmlTag="div" htmlClass="navigation-horizontal" before="-">
+				<block class="Mirasvit\LayeredNavigation\Block\NavigationHorizontal\Search" name="m.catalog.horizontal" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+					<!-- layout name change only with Mirasvit\LayeredNavigation\Api\Config\HorizontalFilterOptionsInterface -->
+					<block class="Mirasvit\LayeredNavigation\Block\Renderer\State" name="m.catalog.navigation.horizontal.state" as="state" />
+					<block class="Mirasvit\LayeredNavigation\Block\Renderer\Filter" name="m.catalog.navigation.horizontal.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>
+				</block>
+			</container>
+		</referenceContainer>
+
+	</body>
+</page>

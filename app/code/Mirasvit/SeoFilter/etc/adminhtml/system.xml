@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="seofilter" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label"
+                 sortOrder="450">
+            <label>SEO Filters</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_SeoFilter::config_seofilter</resource>
+
+            <group id="seofilter" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1000">
+                <label>SEO Filters</label>
+                <field id="is_seofilter_enabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip><![CDATA[If Enabled extension will add frindly urls for Layered Navigation]]></tooltip>
+                    <comment>This functionality will work only with magento default Layered Navigation</comment>
+                </field>
+                <field id="complex_seofilter_names_separator" translate="label" type="select" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="20">
+                    <label>Separator between words in complex filter names</label>
+                    <source_model>Mirasvit\SeoFilter\Service\Config\Source\Separator</source_model>
+                    <depends>
+                        <field id="is_seofilter_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

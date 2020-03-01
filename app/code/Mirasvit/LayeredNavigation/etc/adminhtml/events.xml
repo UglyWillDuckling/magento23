@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_layerednavigation">
+        <observer name="mirasvit_navigation_css"
+                  instance="Mirasvit\LayeredNavigation\Observer\CssGenerate"/>
+    </event>
+
+    <event name="catalog_entity_attribute_save_before">
+        <observer name="mirasvit_update_attribute_backend_type"
+                  instance="Mirasvit\LayeredNavigation\Observer\UpdateAttributeBackendTypeObserver"/>
+    </event>
+
+</config>

@@ -1,0 +1,42 @@
+.navigation-horizontal {
+    padding-bottom: 2rem;
+
+    .filter-options {
+        border-bottom: 1px solid #ccc;
+
+        .filter-options-item {
+            display: inline-table;
+            border-bottom: 0;
+        }
+    }
+
+    .filter-options-content {
+        border: 1px solid #ccc;
+        background-color: #fff;
+        position: absolute !important;
+        z-index: 10000;
+    }
+
+    .items {
+        padding: 0;
+
+        .m-navigation-state {
+            white-space: nowrap;
+        }
+
+        .m-navigation-state .action.remove {
+            position: initial;
+        }
+
+        .m-navigation-state {
+            padding-left: 10px;
+            display: inline-block;
+        }
+    }
+
+    .filter-current {
+        .filter-current-subtitle {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--save settings in catalog/product_attribute page-->
+    <type name="Magento\Catalog\Model\ResourceModel\Eav\Attribute">
+        <plugin name="m-seofilter-separator-table-refresh"
+                type="Mirasvit\LayeredNavigation\Plugin\Admin\AttributeSavePlugin" sortOrder="1000"/>
+    </type>
+
+</config>

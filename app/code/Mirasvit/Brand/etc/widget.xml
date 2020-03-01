@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="mirasvit_brand_slider" class="Mirasvit\Brand\Block\Widget\BrandSlider" is_email_compatible="false"
+            placeholder_image="Magento_Cms::images/widget_block.png" ttl="86400">
+        <label translate="true">Brand Slider by Mirasvit</label>
+        <description translate="true">Brand Slider by Mirasvit</description>
+        <parameters>
+            <parameter name="ItemsLimit" xsi:type="text" visible="true">
+                <label translate="true">Items Limit</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="Order" xsi:type="select" visible="true" source_model="Mirasvit\Brand\Model\Config\Source\BrandSliderOrder">
+                <label translate="true">Show Title</label>
+            </parameter>
+            <parameter name="isShowTitle" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Title</label>
+            </parameter>
+            <parameter name="TitleText" xsi:type="text" visible="true">
+                <label translate="true">Title Text</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="TitleTextColor" xsi:type="text" visible="true">
+                <label translate="true">Title Text Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="TitleBackgroundColor" xsi:type="text" visible="true">
+                <label translate="true">Title Background Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="isShowBrandLabel" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Brand Label</label>
+            </parameter>
+            <parameter name="BrandLabelColor" xsi:type="text" visible="true">
+                <label translate="true">Brand Label Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="isShowButton" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Navigation Buttons</label>
+            </parameter>
+            <parameter name="isShowPagination" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show Pagination</label>
+            </parameter>
+            <parameter name="isAutoPlay" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Auto Play</label>
+            </parameter>
+            <parameter name="isAutoPlayLoop" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Auto Play Loop</label>
+            </parameter>
+            <parameter name="AutoPlayInterval" xsi:type="text" visible="true">
+                <label translate="true">Auto Play Interval</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="PauseOnHover" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Pause on Hover</label>
+            </parameter>
+            <parameter name="SliderWidth" xsi:type="text" visible="true">
+                <label translate="true">Slider Width</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="SliderImageWidth" xsi:type="text" visible="true">
+                <label translate="true">Slider Image Width</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="SpacingBetweenImages" xsi:type="text" visible="true">
+                <label translate="true">Spacing Between Images</label>
+                <description translate="true">If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="InactivePagingColor" xsi:type="text" visible="true">
+                <label translate="true">Inactive Paging Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="ActivePagingColor" xsi:type="text" visible="true">
+                <label translate="true">Active Paging Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="HoverPagingColor" xsi:type="text" visible="true">
+                <label translate="true">Hover Paging Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+            <parameter name="NavigationButtonsColor" xsi:type="text" visible="true">
+                <label translate="true">Navigation Buttons Color</label>
+                <description translate="true">Hex Color Code. If empty will be used from the configuration.</description>
+            </parameter>
+
+            <parameter name="template" xsi:type="select" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/brand_slider.phtml" selected="true">
+                        <label translate="true">Brand Slider</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

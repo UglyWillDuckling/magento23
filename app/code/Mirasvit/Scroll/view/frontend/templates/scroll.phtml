@@ -1,0 +1,12 @@
+<?php
+/** @var \Mirasvit\Scroll\Block\Scroll $block */
+?>
+<?php if ($block->isEnabled()): ?>
+<script type="text/x-magento-init">
+{
+    "<?= $block->getProductListSelector() ?>": {
+        "Mirasvit_Scroll/js/scroll": <?= $block->getJsLayout() ?>
+    }
+}
+</script>
+<?php endif ?>

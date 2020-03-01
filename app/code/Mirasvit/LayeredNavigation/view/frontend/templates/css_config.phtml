@@ -1,0 +1,8 @@
+<?php
+/**
+ * @var $block \Mirasvit\LayeredNavigation\Block\AdditionalCss
+ */
+?>
+<?php if ($block->isCssConfigured()): ?>
+    <link  rel="stylesheet" type="text/css"  media="all" href="<?= $block->getCssPath() ?>" />
+<?php endif ?>

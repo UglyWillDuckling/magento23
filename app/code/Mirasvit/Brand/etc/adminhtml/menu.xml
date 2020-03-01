@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Brand::brand" title="Mirasvit Brand" module="Mirasvit_Brand" sortOrder="100"
+             resource="Mirasvit_Brand::brand" parent="Magento_Backend::content"/>
+
+        <add id="Mirasvit_Brand::brand_brand" title="Brand" module="Mirasvit_Brand" sortOrder="10"
+             action="brand/brand" resource="Mirasvit_Brand::brand" parent="Mirasvit_Brand::brand"/>
+    </menu>
+</config>

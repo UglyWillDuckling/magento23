@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="all_products_page/index/styles" src_type="controller"/>
+		<css src="Mirasvit_LayeredNavigation::css/source/horizontal/horizontal_hide.css"/>
+	</head>
+	<body>
+		<referenceContainer name="head.additional">
+			<block class="Mirasvit\LayeredNavigation\Block\AdditionalCss" name="m.additional.css"
+				   template="Mirasvit_LayeredNavigation::css_config.phtml"/>
+		</referenceContainer>
+		<attribute name="class" value="page-with-filter"/>
+		<attribute name="class" value="page-products"/>
+		<referenceContainer name="sidebar.main">
+			<block class="Magento\LayeredNavigation\Block\Navigation\AllProducts" name="catalog.leftnav" before="-" template="layer/view.phtml">
+				<block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />
+				<block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="layer/filter.phtml"/>
+			</block>
+		</referenceContainer>
+		<referenceContainer name="content">
+			<block class="Mirasvit\LayeredNavigation\Block\Ajax" name="category_ajax" template="ajax.phtml" />
+
+			<!-- vertical navigation -->
+			<block class="Mirasvit\LayeredNavigation\Block\Renderer\State"
+				   name="m.catalog.navigation.horizontal.state" as="state"/>
+			<container name="all.products.view.products" htmlTag="div">
+				<block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" template="Magento_Catalog::product/list.phtml">
+					<block class="Magento\Framework\View\Element\RendererList" name="all.products.product.type.details.renderers" as="details.renderers">
+						<block class="Magento\Framework\View\Element\Template" as="default"/>
+						<block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml" />
+					</block>
+					<block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="all.products.product.addto" as="addto">
+						<block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+							   name="all.products.product.addto.compare" as="compare"
+							   template="Magento_Catalog::product/list/addto/compare.phtml"/>
+					</block>
+					<block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+						<block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+					</block>
+					<action method="setToolbarBlockName">
+						<argument name="name" xsi:type="string">product_list_toolbar</argument>
+					</action>
+				</block>
+			</container>
+			<block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+				<arguments>
+					<argument name="triggers" xsi:type="array">
+						<item name="compareProductLink" xsi:type="string">.action.tocompare</item>
+					</argument>
+				</arguments>
+			</block>
+
+			<!-- horizontal navigation -->
+			<block class="Mirasvit\LayeredNavigation\Block\Ajax" name="category_ajax" template="ajax.phtml"/>
+			<container name="m.horizontal.navigation.container" htmlTag="div" htmlClass="navigation-horizontal"
+					   before="-">
+
+				<block class="Mirasvit\LayeredNavigation\Block\NavigationHorizontal\Category"
+					   name="m.catalog.horizontal" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+					<!-- layout name change only with Mirasvit\LayeredNavigation\Api\Config\HorizontalFilterOptionsInterface -->
+					<block class="Mirasvit\LayeredNavigation\Block\Renderer\State"
+						   name="m.catalog.navigation.horizontal.state" as="state"/>
+
+					<block class="Mirasvit\LayeredNavigation\Block\Renderer\Filter"
+						   name="m.catalog.navigation.horizontal.renderer" as="renderer"
+						   template="Magento_LayeredNavigation::layer/filter.phtml"/>
+				</block>
+			</container>
+		</referenceContainer>
+	</body>
+</page>

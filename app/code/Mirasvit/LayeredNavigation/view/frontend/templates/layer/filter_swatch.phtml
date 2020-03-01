@@ -1,0 +1,114 @@
+<?php
+/**
+ * @var $block \Mirasvit\LayeredNavigation\Block\Renderer\Swatch
+ */
+
+$swatchData = $block->getSwatchData();
+$class = 'm-navigation-filter-swatch-item-' . $block->getFilterUniqueValue($block->getSwatchFilter());
+?>
+<div class="<?php echo $class; ?>  swatch-attribute swatch-layered <?= $swatchData['attribute_code'] ?>"
+     attribute-code="<?= $swatchData['attribute_code'] ?>"
+     attribute-id="<?= $swatchData['attribute_id'] ?>">
+    <div class="swatch-attribute-options clearfix">
+        <form class="<?= \Mirasvit\LayeredNavigation\Api\Config\ConfigInterface::AJAX_SWATCH_WRAPPER_CLASS ?>"
+              m-navigation-filter="<?php echo $block->getFilterRequestVar(); ?>">
+            <?php foreach ($swatchData['options'] as $option => $label): ?>
+                <?php
+                $highlightClass = ($block->isFilterCheckedSwatch($swatchData['attribute_code'], $option))
+                    ? ' m-navigation-highlight-swatch' : '';
+                ?>
+                <a href="<?= $label['link'] ?>"
+                   aria-label="<?= $label['label'] ?>"
+                   class="swatch-option-link-layered<?= $highlightClass ?>">
+                    <?php if (isset($swatchData['swatches'][$option]['type'])): ?>
+                        <?php switch ($swatchData['swatches'][$option]['type']):
+                            case '3': ?>
+                                <div class="swatch-option <?= $label['custom_style'] ?>"
+                                     tabindex="-1"
+                                     option-type="3"
+                                     option-id="<?= $option ?>"
+                                     option-label="<?= $label['label'] ?>"
+                                     option-tooltip-thumb=""
+                                     option-tooltip-value=""
+                                ></div>
+                                <?php break; ?>
+                            <?php case '2': ?>
+                                <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
+                                $swatchData['swatches'][$option]['value']); ?>
+                                <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
+                                $swatchData['swatches'][$option]['value']); ?>
+                                <div class="swatch-option image <?= $label['custom_style'] ?>"
+                                     tabindex="-1"
+                                     option-type="2"
+                                     option-id="<?= $option ?>"
+                                     option-label="<?= $label['label'] ?>"
+                                     option-tooltip-thumb="<?= $swatchThumbPath ?>"
+                                     option-tooltip-value=""
+                                     style="background: url(<?= /* @escapeNotVerified */
+                                     $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                                <?php break; ?>
+                            <?php case '1': ?>
+                                <div class="swatch-option color <?= /* @escapeNotVerified */
+                                $label['custom_style'] ?>"
+                                     tabindex="-1"
+                                     option-type="1"
+                                     option-id="<?= $option ?>"
+                                     option-label="<?= $label['label'] ?>"
+                                     option-tooltip-thumb=""
+                                     option-tooltip-value="<?= $swatchData['swatches'][$option]['value'] ?>"
+                                     style="background: <?= /* @escapeNotVerified */
+                                     $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
+                                <?php break; ?>
+                            <?php case '0':
+                            default: ?>
+                                <div class="swatch-option text <?= $label['custom_style'] ?>
+                                    <?= ($highlightClass) ? 'selected' : '' ?>"
+                                     tabindex="-1"
+                                     option-type="0"
+                                     option-id="<?= $option ?>"
+                                     option-label="<?= $label['label'] ?>"
+                                     option-tooltip-thumb=""
+                                     option-tooltip-value=""
+                                ><?= $swatchData['swatches'][$option]['value'] ?></div>
+                                <?php break; ?>
+                        <?php endswitch; ?>
+                    <?php else: ?>
+                        <div class="swatch-option text <?= $label['custom_style'] ?>
+                                    <?= ($highlightClass) ? 'selected' : '' ?>"
+                             tabindex="-1"
+                             option-type="0"
+                             option-id="<?= $option ?>"
+                             option-label="<?= $label['label'] ?>"
+                             option-tooltip-thumb=""
+                             option-tooltip-value=""
+                        ><?= $label['label'] ?></div>
+                    <?php endif; ?>
+                    <input
+                            name="<?php echo $block->getFilterRequestVar(); ?>"
+                            value="<?php echo $option; ?>"
+                            type="checkbox"
+                            style="display: none;"
+                            class="<?= $highlightClass ?>"
+                    />
+                </a>
+            <?php endforeach; ?>
+        </form>
+    </div>
+</div>
+<script>
+    require(["jquery", "jquery/ui", "Magento_Swatches/js/swatch-renderer"], function ($) {
+        $('.swatch-layered.<?= /* @escapeNotVerified */ $swatchData['attribute_code'] ?>')
+            .find('[option-type="1"], [option-type="2"], [option-type="0"], [option-type="3"]')
+            .SwatchRendererTooltip();
+    });
+</script>
+
+<?php if ($block->isAjaxEnabled()): ?>
+    <script type="text/x-magento-init">
+    {
+        ".<?php echo $class; ?>": {
+            "Mirasvit_LayeredNavigation/js/navigation/swatch": {}
+        }
+    }
+    </script>
+<?php endif; ?>

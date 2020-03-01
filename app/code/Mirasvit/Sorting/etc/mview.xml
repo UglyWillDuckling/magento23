@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="mst_sorting" class="Mirasvit\Sorting\Model\Indexer" group="indexer">
+    </view>
+
+<!--    <view id="mst_sorting_bestsellers" class="Mirasvit\Sorting\Model\Indexer\Bestsellers" group="indexer">-->
+<!--        <subscriptions>-->
+<!--            <table name="sales_order_item" entity_column="item_id" />-->
+<!--        </subscriptions>-->
+<!--    </view>-->
+<!--    <view id="mst_sorting_wished" class="Mirasvit\Sorting\Model\Indexer\Wished" group="indexer">-->
+<!--        <subscriptions>-->
+<!--            <table name="wishlist_item" entity_column="wishlist_item_id" />-->
+<!--        </subscriptions>-->
+<!--    </view>-->
+<!--    <view id="mst_sorting_views" class="Mirasvit\Sorting\Model\Indexer\Views" group="indexer">-->
+<!--        <subscriptions>-->
+<!--            <table name="report_viewed_product_index" entity_column="index_id" />-->
+<!--        </subscriptions>-->
+<!--    </view>-->
+<!--    <view id="mst_sorting_discount" class="Mirasvit\Sorting\Model\Indexer\Discount" group="indexer">-->
+<!--        <subscriptions>-->
+<!--            <table name="catalog_product_index_price" entity_column="entity_id" />-->
+<!--        </subscriptions>-->
+<!--    </view>-->
+</config>

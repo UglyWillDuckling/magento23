@@ -1,0 +1,72 @@
+<?php
+/** @var \Mirasvit\Sorting\Block\Adminhtml\Config\Form\Field\Criteria $block */
+?>
+<td class="label">
+    <label><?= __('Sorting criteria') ?></label>
+</td>
+<td colspan="3">
+    <table class="sas__config-index" id="sorting-criteria">
+        <tr>
+            <th></th>
+            <th><?= __('Criterion') ?></th>
+            <th><?= __('Is Enabled') ?></th>
+            <th><?= __('Default') ?></th>
+            <th><?= __('Direction') ?></th>
+        </tr>
+        <?php foreach ($block->getCriteria() as $id => $criterion): ?>
+            <tr>
+                <td class="col-order" data-role="draggable-handle">
+                    <div class="draggable-handle"></div>
+                    <input type="hidden" data-role="order"
+                           name="<?= $block->getNamePrefix($id) ?>[order]"
+                           value="<?= $criterion['order'] ?>">
+                </td>
+                <td class="col-title"><?= $criterion['label'] ?></td>
+                <td class="col-is_active">
+                    <div class="switcher" onselectstart="return false;">
+                        <input type="checkbox" id="<?= $id ?>"
+                               name="<?= $block->getNamePrefix($id) ?>[is_active]"
+                               value="1"
+                               <?php if ($criterion['is_active']): ?>checked<?php endif ?>>
+                        <label class="switcher-label"
+                               for="<?= $id ?>"
+                               data-text-on="Enabled"
+                               data-text-off="Disabled"
+                               title="Status"></label>
+                    </div>
+                </td>
+                <td class="col-default">
+                    <input type="radio" id="<?= $id ?>"
+                           name="<?= $this->getElement()->getName() ?>[default]"
+                           value="<?= $id ?>"
+                           <?php if ($criterion['default']): ?>checked<?php endif ?>>
+                </td>
+                <td class="col-dir">
+                    <select name="<?= $block->getNamePrefix($id) ?>[dir]">
+                        <option <?= $criterion['dir'] === 'asc' ? 'selected' : '' ?> value="asc">ASC</option>
+                        <option <?= $criterion['dir'] === 'desc' ? 'selected' : '' ?>  value="desc">DESC</option>
+                    </select>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</td>
+<script>
+    require([
+        'jquery',
+        'collapsable'
+    ], function ($) {
+        var list = $('#sorting-criteria');
+        list.sortable({
+            axis:      'y',
+            handle:    '[data-role=draggable-handle]',
+            items:     'tr',
+            update:    function (event, data) {
+                list.find('[data-role=order]').each(function (i, el) {
+                    $(el).val(i + 1);
+                });
+            },
+            tolerance: 'pointer'
+        });
+    });
+</script>

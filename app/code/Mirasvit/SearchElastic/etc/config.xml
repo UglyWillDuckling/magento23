@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <search>
+            <engine>
+                <elastic_host>127.0.0.1</elastic_host>
+                <elastic_port>9200</elastic_port>
+                <elastic_prefix>magento2</elastic_prefix>
+            </engine>
+        </search>
+    </default>
+</config>

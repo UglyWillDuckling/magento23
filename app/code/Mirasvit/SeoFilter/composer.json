@@ -1,0 +1,21 @@
+{
+  "name": "mirasvit/module-seo-filter",
+  "description": "SeoFilter",
+  "require": {
+    "magento/framework": "100.1.*|100.2.*|101.0.*|102.0.*",
+    "mirasvit/module-core": "dev-master|^1.2"
+  },
+  "type": "magento2-module",
+  "version": "1.0.11",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "src/SeoFilter/registration.php"
+    ],
+    "psr-4": {
+      "Mirasvit\\SeoFilter\\": "src/SeoFilter"
+    }
+  }
+}

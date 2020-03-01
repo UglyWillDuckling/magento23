@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <all_products>
+            <general>
+                <isEnabled>0</isEnabled>
+                <AllProductsUrl>all</AllProductsUrl>
+                <Title>All Products</Title>
+                <MetaTitle>All Products</MetaTitle>
+                <MetaKeyword>All Products</MetaKeyword>
+                <MetaDescription>All Products</MetaDescription>
+                <isShowAllCategories>0</isShowAllCategories>
+            </general>
+        </all_products>
+    </default>
+</config>

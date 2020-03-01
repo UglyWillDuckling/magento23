@@ -1,0 +1,22 @@
+{
+  "name": "mirasvit/module-search-elastic",
+  "description": "Search Elastic",
+  "require": {
+    "magento/framework": "100.1.*|100.2.*|101.0.*|102.0.*",
+    "elasticsearch/elasticsearch": "~2.0|~5.1|~6.1",
+    "mirasvit/module-search": "dev-master|dev-develop|~1.0.10|>=1.0.122"
+  },
+  "type": "magento2-module",
+  "version": "1.2.45",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "src/SearchElastic/registration.php"
+    ],
+    "psr-4": {
+      "Mirasvit\\SearchElastic\\": "src/SearchElastic"
+    }
+  }
+}

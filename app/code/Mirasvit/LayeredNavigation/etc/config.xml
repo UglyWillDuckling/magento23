@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <layerednavigation>
+            <general>
+                <is_ajax_enabled>0</is_ajax_enabled>
+                <is_multiselect_enabled>0</is_multiselect_enabled>
+                <multiselect_display_options>0</multiselect_display_options>
+                    <display_options_background_color></display_options_background_color>
+                    <display_options_border_color></display_options_border_color>
+                    <display_options_checked_label_color></display_options_checked_label_color>
+                <is_show_opened_filters>0</is_show_opened_filters>
+            </general>
+            <links_limit>
+                <show_more_links></show_more_links>
+                <show_more_less_text>less...</show_more_less_text>
+                <show_more_more_text>more...</show_more_more_text>
+                <show_more_color>#757575</show_more_color>
+            </links_limit>
+            <highlight>
+                <is_enabled_link_highlight>0</is_enabled_link_highlight>
+                <highlight_color>#ff5501</highlight_color>
+            </highlight>
+            <additional_filters>
+                <is_enabled_new_filter>0</is_enabled_new_filter>
+                <label_new_filter>New</label_new_filter>
+                <position_new_filter>100</position_new_filter>
+
+                <is_enabled_on_sale_filter>0</is_enabled_on_sale_filter>
+                <label_on_sale_filter>Sale</label_on_sale_filter>
+                <position_on_sale_filter>100</position_on_sale_filter>
+
+                <is_enabled_stock_filter>0</is_enabled_stock_filter>
+                <label_stock_filter>Stock</label_stock_filter>
+                <label_in_stock_filter>In Stock</label_in_stock_filter>
+                <label_out_of_stock_filter>Out of Stock</label_out_of_stock_filter>
+                <position_stock_filter>100</position_stock_filter>
+
+                <is_enabled_rating_filter>0</is_enabled_rating_filter>
+                <label_rating_filter>Rating</label_rating_filter>
+                <position_rating_filter>100</position_rating_filter>
+            </additional_filters>
+            <horizontal_filters>
+                <horizontal_filters_select></horizontal_filters_select>
+                <horizontal_filters_hide></horizontal_filters_hide>
+                <is_use_catalog_leftnav_horisontal_navigation>0</is_use_catalog_leftnav_horisontal_navigation>
+            </horizontal_filters>
+            <filter_clear_block>
+                <filter_clear_block_position>0</filter_clear_block_position>
+                <filter_clear_block_representation_attributes>1</filter_clear_block_representation_attributes>
+            </filter_clear_block>
+        </layerednavigation>
+    </default>
+</config>

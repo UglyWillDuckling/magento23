@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- ajax response plugin -->
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="ajaxResponse" type="Mirasvit\Scroll\Plugin\Frontend\Magento\Framework\App\Action\AbstractAction\ScrollResponsePlugin" sortOrder="1001"/>
+    </type>
+</config>

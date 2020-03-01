@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="search">
+            <group id="engine">
+                <label>Search Engine Configuration</label>
+
+                <field id="elastic_host" translate="label comment tooltip" type="text" sortOrder="20" showInDefault="1">
+                    <label>Elasticsearch Host</label>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+                <field id="elastic_port" translate="label comment tooltip" type="text" sortOrder="30" showInDefault="1">
+                    <label>Elasticsearch Port</label>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+                <field id="elastic_prefix" translate="label comment tooltip" type="text" sortOrder="30" showInDefault="1">
+                    <label>Elasticsearch Index Prefix</label>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+                <field id="elastic_status" translate="label comment tooltip" type="text" sortOrder="70" showInDefault="1">
+                    <button_label>Check Status</button_label>
+                    <frontend_model>Mirasvit\SearchElastic\Block\Adminhtml\Config\Form\Field\Command\Status</frontend_model>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+                <field id="elastic_clear" translate="label comment tooltip" type="text" sortOrder="85" showInDefault="1">
+                    <button_label>Reset</button_label>
+                    <frontend_model>Mirasvit\SearchElastic\Block\Adminhtml\Config\Form\Field\Command\Reset</frontend_model>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+                <field id="elastic_clear_store" translate="label comment tooltip" type="text" sortOrder="90" showInDefault="1">
+                    <button_label>Reset Store Indexes</button_label>
+                    <frontend_model>Mirasvit\SearchElastic\Block\Adminhtml\Config\Form\Field\Command\ResetStoreIndexes</frontend_model>
+                    <depends>
+                        <field id="engine">elastic</field>
+                    </depends>
+                </field>
+
+            </group>
+        </section>
+        <section id="searchautocomplete">
+            <group id="general">
+                <field id="fast_mode" translate="label comment tooltip" type="select" sortOrder="25"
+                       showInDefault="1">
+                    <label>Fast Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

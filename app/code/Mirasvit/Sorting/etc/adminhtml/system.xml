@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mst_sorting" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label"
+                 sortOrder="440">
+            <label>Smart Sorting</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_Sorting::mst_sorting</resource>
+            <group id="general" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1000">
+                <label>General</label>
+
+                <field id="criteria" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Mirasvit\Sorting\Block\Adminhtml\Config\Form\Field\Criteria</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="configurable" type="select" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show configurable products first</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="out_of_stock" type="select" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Push "out of stock" products to the end of a list</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

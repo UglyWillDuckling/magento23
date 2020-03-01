@@ -1,0 +1,96 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--SERVICE-->
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\AjaxResponseServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\AjaxResponseService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\UrlServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\UrlService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterDataServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterDataService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterNewServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterNewService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterOnSaleServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterOnSaleService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterStockServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterStockService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\FilterRatingServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\FilterRatingService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\DirectoryServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\DirectoryService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\CssServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\CssService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\CssCreatorServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\CssCreatorService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\SliderServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\SliderService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\SeoFilterServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\SeoFilterService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\SeoFilterUrlServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\SeoFilterUrlService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\VersionServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\VersionService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\JsonServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\JsonService"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Service\ElasticsearchServiceInterface"
+                type="Mirasvit\LayeredNavigation\Service\ElasticsearchService"/>
+
+    <!--CONFIG-->
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\ConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\Config" />
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\AdditionalFiltersConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\AdditionalFiltersConfig"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\HorizontalFiltersConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\HorizontalFiltersConfig"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\SliderConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\SliderConfig"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\HighlightConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\HighlightConfig"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\LinksLimitConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\LinksLimitConfig"/>
+    <preference for="Mirasvit\LayeredNavigation\Api\Config\FilterClearBlockConfigInterface"
+                type="Mirasvit\LayeredNavigation\Service\Config\FilterClearBlockConfig"/>
+
+    <!--REPOSITORY-->
+    <preference for="Mirasvit\LayeredNavigation\Api\Repository\AttributeSettingsRepositoryInterface"
+                type="Mirasvit\LayeredNavigation\Repository\AttributeSettingsRepository" />
+
+    <!--DATA-->
+    <preference for="Mirasvit\LayeredNavigation\Api\Data\AttributeSettingsInterface"
+                type="Mirasvit\LayeredNavigation\Model\AttributeSettings" />
+
+    <!--Entity Manager-->
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Mirasvit\LayeredNavigation\Api\Data\AttributeSettingsInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\LayeredNavigation\Api\Data\AttributeSettingsInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\LayeredNavigation\Api\Data\AttributeSettingsInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Mirasvit\LayeredNavigation\Api\Data\AttributeSettingsInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- fix incorrect items count in navigation for Elasticsearch -->
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider">
+        <plugin name="m-layerednavigation-elasticsearch-fix-item-count"
+                type="Mirasvit\LayeredNavigation\Plugin\ElasticsearchIndexerPlugin" />
+    </type>
+
+    <!-- Search Product List Brand Logo  -->
+    <virtualType name="Magento\CatalogSearch\Block\SearchResult\ListProduct"
+                 type="Magento\Catalog\Block\Product\ListProduct">
+        <arguments>
+            <argument name="catalogLayer" xsi:type="object">Magento\Catalog\Model\Layer\Search</argument>
+        </arguments>
+    </virtualType>
+</config>

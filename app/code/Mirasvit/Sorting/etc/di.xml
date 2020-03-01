@@ -1,0 +1,46 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mirasvit\Sorting\Api\Repository\CriterionRepositoryInterface" type="Mirasvit\Sorting\Repository\CriterionRepository" />
+    <preference for="Mirasvit\Sorting\Api\Service\SorterServiceInterface" type="Mirasvit\Sorting\Service\ProductSorterService" />
+    <preference for="Mirasvit\Sorting\Api\Service\CriteriaApplierServiceInterface" type="Mirasvit\Sorting\Service\CriteriaApplierService" />
+    <preference for="Mirasvit\Sorting\Api\Service\CriteriaManagementServiceInterface" type="Mirasvit\Sorting\Service\CriteriaManagementService" />
+
+    <type name="Magento\Indexer\Model\Indexer">
+        <plugin name="switchMviewState" type="Mirasvit\Sorting\Plugin\Magento\Indexer\Model\Indexer\SwitchMviewState" />
+    </type>
+
+    <type name="Mirasvit\Sorting\Api\Repository\CriterionRepositoryInterface">
+        <arguments>
+            <argument name="criteria" xsi:type="array">
+                <!-- item's name should be same as the value returned by the "getCode" method -->
+                <item name="bestsellers" xsi:type="string">Mirasvit\Sorting\Criteria\BestsellersCriterion</item>
+                <item name="review_count" xsi:type="string">Mirasvit\Sorting\Criteria\ReviewCriterion</item>
+                <item name="rating" xsi:type="string">Mirasvit\Sorting\Criteria\RatingCriterion</item>
+                <item name="new_arrivals" xsi:type="string">Mirasvit\Sorting\Criteria\NewCriterion</item>
+                <item name="most_wished" xsi:type="string">Mirasvit\Sorting\Criteria\WishedCriterion</item>
+                <item name="most_viewed" xsi:type="string">Mirasvit\Sorting\Criteria\ViewsCriterion</item>
+                <item name="biggest_saving" xsi:type="string">Mirasvit\Sorting\Criteria\DiscountCriterion</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Sorting\Service\ProductSorterService">
+        <arguments>
+            <argument name="sorters" xsi:type="array">
+                <item name="out_of_stock" xsi:type="object">Mirasvit\Sorting\Service\Sorter\OutOfStockSorterService</item>
+                <item name="configurable" xsi:type="object">Mirasvit\Sorting\Service\Sorter\ConfigurableSorterService</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Sorting\Model\Indexer">
+        <arguments>
+            <argument name="indexers" xsi:type="array">
+                <item name="bestsellersIndexer" xsi:type="object">Mirasvit\Sorting\Model\Indexer\Bestsellers</item>
+                <item name="wishedIndexer" xsi:type="object">Mirasvit\Sorting\Model\Indexer\Wished</item>
+                <item name="viewsIndexer" xsi:type="object">Mirasvit\Sorting\Model\Indexer\Views</item>
+                <item name="discountIndexer" xsi:type="object">Mirasvit\Sorting\Model\Indexer\Discount</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
